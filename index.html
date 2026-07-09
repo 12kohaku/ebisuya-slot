@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恵比寿屋食堂 カツカレーチャレンジ</title>
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:gold;
+    margin-top:30px;
+}
+
+.slot{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:40px 0;
+}
+
+.reel{
+    width:90px;
+    height:90px;
+    background:#222;
+    border:4px solid gold;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+}
+
+button{
+    padding:15px 35px;
+    font-size:22px;
+    border:none;
+    border-radius:10px;
+    background:gold;
+    cursor:pointer;
+}
+
+#result{
+    font-size:28px;
+    margin-top:30px;
+    color:#ffeb3b;
+}
+
+#coupon{
+    display:none;
+    margin:30px;
+    padding:20px;
+    border:4px dashed red;
+    background:white;
+    color:black;
+    border-radius:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍛恵比寿屋食堂🍛</h1>
+<h2>カツカレーチャレンジ</h2>
+
+<div class="slot">
+<div class="reel" id="r1">❓</div>
+<div class="reel" id="r2">❓</div>
+<div class="reel" id="r3">❓</div>
+</div>
+
+<button onclick="spin()">START</button>
+
+<div id="result"></div>
+
+<div id="coupon">
+<h2>🎉100円引きクーポン🎉</h2>
+<p>恵比寿屋食堂でご利用いただけます！</p>
+<p><b>店員さんへこの画面を見せてください。</b></p>
+</div>
+
+<script>
+
+const icons=["🍛","🥩","🍚","🥄"];
+
+function random(){
+    return icons[Math.floor(Math.random()*icons.length)];
+}
+
+function spin(){
+
+document.getElementById("coupon").style.display="none";
+document.getElementById("result").innerHTML="";
+
+let a=random();
+let b=random();
+let c=random();
+
+if(Math.random()<0.2){
+a="🍛";
+b="🍛";
+c="🍛";
+}
+
+document.getElementById("r1").innerHTML=a;
+document.getElementById("r2").innerHTML=b;
+document.getElementById("r3").innerHTML=c;
+
+if(a=="🍛"&&b=="🍛"&&c=="🍛"){
+document.getElementById("result").innerHTML="🎉 JACKPOT!! 🎉";
+document.getElementById("coupon").style.display="block";
+}else{
+document.getElementById("result").innerHTML="残念！もう一度！";
+}
+
+}
+
+</script>
+
+</body>
+</html>
